@@ -7,8 +7,9 @@ services:
          context: .
       restart: always
       volumes:
-         - ./:/srv
-      command: node /srv/server.js
+         - ./app:/srv/app
+         - ./files:/srv/files
+      command: node /srv/app/server.js
       ports:
          - "3000:3000"
       links:
