@@ -46,7 +46,7 @@ server.post( 'products', ( req, res, next ) => {
    let newname = ( Date.now() + Math.random() ).toString( 16 ) + req.files.image.name;
    // Resize the image and save it
    imagelib( req.files.image.path ).resize( 50 ).withoutEnlargement().toFile(
-      __dirname + '/files/' + newname,
+      __dirname + '/../files/' + newname,
       function () {
          // Remove source image
          fs.unlinkSync( req.files.image.path );
@@ -68,12 +68,12 @@ server.post( 'products', ( req, res, next ) => {
 
 // Static endpoint - files
 server.get( /^\/files\/.*$/, restapi.serveStatic({
-   directory   : __dirname,
+   directory   : __dirname + '/../',
 }) );
 
 // Static endpoint - web app
 server.get( /^\/?^((?!files).)*$/, restapi.serveStatic({
-   directory   : './web',
+   directory   : __dirname + '/web',
    default     : 'index.html',
 }) );
 

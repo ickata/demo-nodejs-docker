@@ -2,11 +2,14 @@ version: '3'
 
 services:
    node:
-      image: node:8.8.1
+      image: nodejsapp
+      build:
+         context: .
       restart: always
       volumes:
-         - ./:/srv
-      command: node /srv/server.js
+         - ./app:/srv/app
+         - ./files:/srv/files
+      command: node /srv/app/server.js
       ports:
          - "3000:3000"
       links:

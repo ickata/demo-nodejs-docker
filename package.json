@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simple NodeJS app with Docker",
   "scripts": {
-    "start": "docker-compose down && npm install && docker-compose up"
+    "start": "docker-compose down && docker-compose up"
   },
   "repository": {
     "type": "git",
