@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8">
+   <title>NodeJS example with Docker</title>
+</head>
+<body>
+   <h1>NodeJS example with Docker</h1>
+   
+   <h2>Products</h2>
+   <div id="products"></div>
+   <script type="text/javascript">
+      listProducts();
+      
+      // Retrieve all products and list them; overwrites existing data
+      function listProducts() {
+         let container = document.getElementById( 'products' );
+         
+         // Cleanup existing data
+         container.firstElementChild && container.firstElementChild.remove();
+         
+         // Retrieve all products & list them
+         fetch( '/products' ).then( res => res.json().then( products => {
+            if ( products && products.length ) {
+               let table = document.createElement( 'table' );
+               table.innerHTML = `
+                  <thead>
+                     <tr>
+                        <th>Image</th><th>Title</th><th>Price</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+               `;
+               
+               let html = [];
+               
+               products.forEach( product => {
+                  html.push(
+                     `
+                        <tr>
+                           <td><img src="${product.image}"></td>
+                           <td>${product.title}</td>
+                           <td>${product.price}</td>
+                        </tr>
+                     `
+                  );
+               });
+               
+               table.querySelector( 'tbody' ).innerHTML = html.join( '' );
+               
+               container.append( table );
+            } else {
+               let text = document.createElement( 'p' );
+               text.innerHTML = 'No products to show';
+               container.append( text );
+            }
+         } ) );
+      }
+      
+      function resetFormWithDelay( form ) {
+         setTimeout( form.reset.bind( form ), 100 );
+      }
+      
+      function listProductsWithDelay() {
+         setTimeout( listProducts, 100 );
+      }
+   </script>
+   
+   <h2>Add Product</h2>
+   <form method="POST" action="/products" enctype="multipart/form-data" onsubmit="listProductsWithDelay(); resetFormWithDelay( this );">
+      <p><input type="text" placeholder="Title" name="title"></p>
+      <p><input type="number" placeholder="Price" name="price"></p>
+      <p><input type="file" name="image"></p>
+      <button type="submit">Add</button>
+   </form>
+</body>
+</html>
