@@ -1,0 +1,27 @@
+{
+  "name": "demo-nodejs-docker",
+  "version": "1.0.0",
+  "description": "Simple NodeJS app with Docker",
+  "scripts": {
+    "start": "npm install && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ickata/demo-nodejs-docker.git"
+  },
+  "keywords": [
+    "nodejs",
+    "docker"
+  ],
+  "author": "Hristo Chakarov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ickata/demo-nodejs-docker/issues"
+  },
+  "homepage": "https://github.com/ickata/demo-nodejs-docker#readme",
+  "dependencies": {
+    "mysql": "2.15.0",
+    "restify": "4.2.0",
+    "sharp": "0.17.3"
+  }
+}
