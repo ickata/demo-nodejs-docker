@@ -2,7 +2,9 @@ version: '3'
 
 services:
    node:
-      image: node:8.8.1
+      image: nodejsapp
+      build:
+         context: .
       restart: always
       volumes:
          - ./:/srv
