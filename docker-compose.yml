@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+   node:
+      image: node:8.8.1
+      restart: always
+      volumes:
+         - ./:/srv
+      command: node /srv/server.js
+      ports:
+         - "3000:3000"
+      links:
+         - mariadb
+   
+   mariadb:
+      image: mariadb:10.3.3
+      restart: always
+      volumes:
+         - ./data:/var/lib/mysql
+         - ./install:/docker-entrypoint-initdb.d
+      ports:
+         - "3306:3306"
+      environment:
+         - MYSQL_ROOT_PASSWORD=root
+         - MYSQL_DATABASE=nodejs-docker

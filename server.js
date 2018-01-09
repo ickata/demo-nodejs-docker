@@ -5,7 +5,7 @@ const imagelib = require( 'sharp' );
 
 const server   = restapi.createServer();
 const db       = mysql.createConnection({
-   "host"      : "localhost",
+   "host"      : "mariadb",
    "user"      : "root",
    "password"  : "root",
    "database"  : "nodejs-docker",

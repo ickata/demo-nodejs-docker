@@ -2,10 +2,6 @@
 
 This is a demo of NodeJS app that will be running on Docker. This is the `start` branch – we already have our app, but it is still not "dockerized" yet.
 
-## Setup
-
-Execute the SQL file from `install` directory
-
 ## Start
 
 Run `npm start`
